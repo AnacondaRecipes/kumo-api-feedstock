@@ -1,0 +1,48 @@
+{% set name = "kumo-api" %}
+{% set version = "0.45.0" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+build:
+  number: 0
+  noarch: python
+  skip: true  # [py<310]
+
+requirements:
+  build:
+    # curl is needed only for downloading whl files in build.sh
+    - curl
+  host:
+    - pip
+    - python 3.10
+    - wheel
+  run:
+    - python >=3.10
+    - pydantic !=2.0.*,!=2.1.*,!=2.2.*,!=2.3.*,!=2.4.*,!=2.5.*,!=2.6.*
+    - protobuf >=3.19.0
+
+test:
+  imports:
+    - kumoapi
+  commands:
+    - pip check
+  requires:
+    - pip
+
+about:
+  home: https://kumo.ai
+  summary: RESTful datamodels for Kumo AI
+  license: MIT
+  license_family: MIT
+  license_file: LICENSE
+  description: |
+    The kumo-api library defines a RESTful API resource schema and specification for HTTP-compatible
+    clients to interact with Kumo AI's cloud services. Resource schemas are defined as Pydantic dataclasses.
+  dev_url: https://pypi.org/project/kumo-api
+  doc_url: https://kumo.ai/docs/overview
+
+extra:
+  recipe-maintainers:
+    - aosipov
