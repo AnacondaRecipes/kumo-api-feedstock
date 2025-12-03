@@ -13,7 +13,7 @@ build:
 requirements:
   build:
     # curl is needed only for downloading whl files in build.sh
-    - curl 8.16.0
+    - curl
   host:
     - pip
     - python 3.10
